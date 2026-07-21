@@ -7,34 +7,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --cream: #FAF6F0; --warm: #F0E8D8; --terra: #C85D3A;
-      --sage: #5A7A5C; --charcoal: #2C2416; --muted: #8A7D6B;
-      --white: #FFFFFF; --border: #E0D8CC; --input-bg: #FAF8F5;
+      --cream: #F4F7FA;      /* Fondo principal plata-celeste muy suave */
+      --warm: #E2E8F0;       /* Plateado para tarjetas y acentos secundarios */
+      --terra: #0A2540;      /* Azul marino (Color principal de marca y botones) */
+      --sage: #00A8E8;       /* Celeste vibrante para acentos y estados activos */
+      --charcoal: #0D1B2A;   /* Azul marino casi negro para texto principal */
+      --muted: #64748B;      /* Gris pizarra/plateado para textos secundarios */
+      --white: #FFFFFF;      /* Blanco puro */
+      --border: #CBD5E1;     /* Borde plateado */
+      --input-bg: #F8FAFC;   /* Fondo de inputs */
     }
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--cream); min-height: 100vh; max-width: 480px; margin: 0 auto; }
+    body { font-family: 'DM Sans', sans-serif; font-size: 16px; background: var(--cream); min-height: 100vh; max-width: 480px; margin: 0 auto; }
 
     .screen { display: none; flex-direction: column; min-height: 100vh; background: var(--cream); animation: fi .25s ease; }
     .screen.active { display: flex; }
     @keyframes fi { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-    #s-onboard { justify-content: center; align-items: center; padding: 40px 30px; gap: 20px; background: linear-gradient(160deg, #f5ede0 0%, var(--cream) 100%); overflow-y: auto;}
+    #s-onboard { justify-content: center; align-items: center; padding: 40px 30px; gap: 20px; background: linear-gradient(160deg, #DCEAF5 0%, var(--cream) 100%); overflow-y: auto;}
     .ob-emoji { font-size: 70px; text-align: center; margin-bottom: -10px; }
     .ob-title { font-family: 'Fraunces', serif; font-size: 32px; color: var(--charcoal); text-align: center; line-height: 1.2; }
-    .ob-sub { font-size: 14px; color: var(--muted); text-align: center; line-height: 1.5; margin-bottom: 10px;}
+    .ob-sub { font-size: 16px; color: var(--muted); text-align: center; line-height: 1.5; margin-bottom: 10px;}
     .ob-card { width: 100%; background: var(--white); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 4px 20px rgba(0,0,0,.06); animation: fi .3s ease; }
-    .ob-label { font-size: 13px; font-weight: 700; color: var(--charcoal); }
-    .ob-input { padding: 12px 16px; border-radius: 14px; border: 2px solid var(--border); background: var(--input-bg); font-family: 'DM Sans'; font-size: 14px; color: var(--charcoal); outline: none; transition: .2s; }
-    .ob-input:focus { border-color: var(--terra); background: var(--white); }
-    .ob-btn { width: 100%; padding: 16px; border-radius: 20px; border: none; background: var(--terra); color: var(--white); font-size: 15px; font-weight: 700; cursor: pointer; font-family: 'DM Sans'; transition: .1s; margin-top: 5px;}
-    .ob-btn-sec { width: 100%; padding: 16px; border-radius: 20px; border: none; background: transparent; color: var(--terra); font-size: 14px; font-weight: 700; cursor: pointer; font-family: 'DM Sans'; transition: .1s; margin-top: -10px;}
+    .ob-label { font-size: 15px; font-weight: 700; color: var(--charcoal); }
+    .ob-input { padding: 12px 16px; border-radius: 14px; border: 2px solid var(--border); background: var(--input-bg); font-family: 'DM Sans'; font-size: 16px; color: var(--charcoal); outline: none; transition: .2s; }
+    .ob-input:focus { border-color: var(--sage); background: var(--white); }
+    .ob-btn { width: 100%; padding: 16px; border-radius: 20px; border: none; background: var(--terra); color: var(--white); font-size: 16px; font-weight: 700; cursor: pointer; font-family: 'DM Sans'; transition: .1s; margin-top: 5px;}
+    .ob-btn-sec { width: 100%; padding: 16px; border-radius: 20px; border: none; background: transparent; color: var(--sage); font-size: 16px; font-weight: 700; cursor: pointer; font-family: 'DM Sans'; transition: .1s; margin-top: -10px;}
     .row-inputs { display: flex; gap: 10px; }
     .row-inputs > div { flex: 1; display: flex; flex-direction: column; gap: 10px; }
 
     /* ── AWARENESS SCREEN ESTILOS ── */
     #s-awareness { justify-content: center; align-items: center; padding: 40px 25px; overflow-y: auto; }
     .aw-card { background: var(--white); border-radius: 24px; padding: 30px 25px; box-shadow: 0 4px 20px rgba(0,0,0,.05); text-align: justify; margin-bottom: 20px; }
-    .aw-card p { font-size: 14px; color: var(--charcoal); line-height: 1.6; }
+    .aw-card p { font-size: 16px; color: var(--charcoal); line-height: 1.6; }
 
     .main-layout { display: none; flex-direction: column; min-height: 100vh; }
     .main-layout.active { display: flex; }
@@ -42,62 +48,62 @@
     .tab-pane { display: none; animation: fi .2s ease; }
     .tab-pane.active { display: block; }
 
-    .nav-bar { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; background: var(--white); display: flex; justify-content: space-around; align-items: center; height: 70px; border-top: 1px solid #F0EBE3; z-index: 100; }
-    .ni { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; padding: 8px 16px; color: #C0BDBB; border: none; background: none; font-family: 'DM Sans'; position: relative;}
+    .nav-bar { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; background: var(--white); display: flex; justify-content: space-around; align-items: center; height: 70px; border-top: 1px solid #E2E8F0; z-index: 100; }
+    .ni { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; padding: 8px 16px; color: #94A3B8; border: none; background: none; font-family: 'DM Sans'; position: relative;}
     .ni svg { width: 24px; height: 24px; stroke-width: 2; transition: .2s; }
-    .ni span { font-size: 11px; font-weight: 600; }
-    .ni.on { color: var(--terra); }
-    .nav-badge { position: absolute; top: 4px; right: 8px; background: var(--terra); color: white; font-size: 10px; font-weight: 700; border-radius: 50%; width: 17px; height: 17px; display: flex; align-items: center; justify-content: center; border: 2px solid white; transform: scale(0); transition: .3s; }
+    .ni span { font-size: 12px; font-weight: 600; }
+    .ni.on { color: var(--sage); }
+    .nav-badge { position: absolute; top: 4px; right: 8px; background: var(--sage); color: white; font-size: 11px; font-weight: 700; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; border: 2px solid white; transform: scale(0); transition: .3s; }
     .nav-badge.show { transform: scale(1); }
 
     .header { padding: 52px 20px 16px; position: relative; }
-    .header h1 { font-family: 'Fraunces', serif; font-size: 26px; color: var(--charcoal); }
-    .header p { font-size: 14px; color: var(--muted); margin-top: 4px; }
+    .header h1 { font-family: 'Fraunces', serif; font-size: 28px; color: var(--charcoal); }
+    .header p { font-size: 16px; color: var(--muted); margin-top: 4px; }
     .profile-btn { position: absolute; right: 20px; top: 48px; width: 44px; height: 44px; background: var(--white); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,.05); cursor: pointer; color: var(--charcoal); overflow: hidden; }
 
     .search-bar { display: flex; align-items: center; gap: 10px; background: var(--white); border-radius: 16px; margin: 0 20px 12px; padding: 12px 16px; box-shadow: 0 2px 10px rgba(0,0,0,.03); }
-    .search-bar input { border: none; outline: none; width: 100%; font-family: 'DM Sans'; font-size: 14px; color: var(--charcoal); background: transparent; }
+    .search-bar input { border: none; outline: none; width: 100%; font-family: 'DM Sans'; font-size: 16px; color: var(--charcoal); background: transparent; }
     .filters { display: flex; gap: 8px; overflow-x: auto; padding: 0 20px 12px; scrollbar-width: none; }
     .filters::-webkit-scrollbar { display: none; }
-    .fbtn { padding: 9px 18px; border-radius: 14px; border: none; background: var(--white); color: var(--muted); font-weight: 600; font-size: 13px; cursor: pointer; white-space: nowrap; font-family: 'DM Sans'; }
+    .fbtn { padding: 9px 18px; border-radius: 14px; border: none; background: var(--white); color: var(--muted); font-weight: 600; font-size: 15px; cursor: pointer; white-space: nowrap; font-family: 'DM Sans'; }
     .fbtn.on { background: var(--terra); color: var(--white); }
 
     .pets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 0 20px 20px; }
     .pet-card { background: var(--white); border-radius: 22px; padding: 12px; cursor: pointer; position: relative; }
     .pet-card .ebox { background: var(--warm); height: 110px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 50px; margin-bottom: 10px; overflow: hidden; }
-    .pet-card h3 { font-size: 15px; color: var(--charcoal); font-weight: 700; }
-    .pet-card p { font-size: 12px; color: var(--muted); margin-top: 2px; }
-    .heart-btn { position: absolute; top: 12px; right: 12px; background: var(--white); border: none; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.08); font-size: 17px; color: #D0C8BE; }
-    .heart-btn.on { color: var(--terra); }
+    .pet-card h3 { font-size: 17px; color: var(--charcoal); font-weight: 700; }
+    .pet-card p { font-size: 14px; color: var(--muted); margin-top: 2px; }
+    .heart-btn { position: absolute; top: 12px; right: 12px; background: var(--white); border: none; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.08); font-size: 17px; color: #CBD5E1; }
+    .heart-btn.on { color: var(--sage); }
 
     .list-item { display: flex; align-items: center; gap: 12px; background: var(--white); border-radius: 18px; padding: 14px; margin: 0 20px 12px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.03); }
     .list-emoji { width: 52px; height: 52px; background: var(--warm); border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; overflow: hidden; }
     .list-info { flex: 1; }
-    .list-info h3 { font-size: 15px; color: var(--charcoal); font-weight: 700; }
-    .list-info p { font-size: 12px; color: var(--muted); margin-top: 3px; }
+    .list-info h3 { font-size: 17px; color: var(--charcoal); font-weight: 700; }
+    .list-info p { font-size: 14px; color: var(--muted); margin-top: 3px; }
 
     .fs-overlay { position: fixed; inset: 0; z-index: 50; overflow-y: auto; background: var(--cream); max-width: 480px; left: 50%; transform: translateX(-50%); width: 100%; display: none; }
     .fs-overlay.active { display: block; animation: fi .25s ease; }
     .back-btn { position: absolute; top: 48px; left: 16px; background: var(--white); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px rgba(0,0,0,.08); z-index: 10; font-size: 20px; color: var(--charcoal); }
-    .fs-title { text-align: center; padding: 58px 20px 20px; font-family: 'Fraunces', serif; font-size: 22px; color: var(--charcoal); }
+    .fs-title { text-align: center; padding: 58px 20px 20px; font-family: 'Fraunces', serif; font-size: 24px; color: var(--charcoal); }
 
     .det-hero { height: 320px; background: var(--warm); display: flex; align-items: center; justify-content: center; font-size: 120px; position: relative; overflow: hidden; }
     .det-content { background: var(--cream); border-radius: 32px 32px 0 0; margin-top: -30px; padding: 28px 20px 40px; position: relative; z-index: 2; }
     .stats { display: flex; gap: 10px; margin: 20px 0; }
     .stat-box { flex: 1; background: var(--white); border-radius: 18px; padding: 14px 8px; text-align: center; }
-    .stat-box span { display: block; font-size: 11px; color: var(--muted); margin-bottom: 4px; }
-    .stat-box strong { color: var(--terra); font-size: 15px; font-weight: 700; }
+    .stat-box span { display: block; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+    .stat-box strong { color: var(--terra); font-size: 16px; font-weight: 700; }
 
     .fgroup { background: var(--white); margin: 0 20px 14px; border-radius: 20px; padding: 18px; box-shadow: 0 2px 8px rgba(0,0,0,.03); }
-    .fgroup h3 { font-size: 15px; font-weight: 700; color: var(--charcoal); margin-bottom: 14px; }
-    .finput { width: 100%; padding: 14px; border-radius: 12px; border: 1.5px solid var(--border); background: var(--input-bg); font-family: 'DM Sans'; font-size: 14px; color: var(--charcoal); outline: none; margin-bottom: 10px; transition: .2s; }
-    .finput:focus { border-color: var(--terra); background: var(--white); }
-    .fselect { appearance: none; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232C2416' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 12px center; background-size: 14px; cursor: pointer; }
+    .fgroup h3 { font-size: 17px; font-weight: 700; color: var(--charcoal); margin-bottom: 14px; }
+    .finput { width: 100%; padding: 14px; border-radius: 12px; border: 1.5px solid var(--border); background: var(--input-bg); font-family: 'DM Sans'; font-size: 16px; color: var(--charcoal); outline: none; margin-bottom: 10px; transition: .2s; }
+    .finput:focus { border-color: var(--sage); background: var(--white); }
+    .fselect { appearance: none; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230D1B2A' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 12px center; background-size: 14px; cursor: pointer; }
     .primary-btn { width: 100%; padding: 18px; border-radius: 20px; border: none; background: var(--terra); color: var(--white); font-size: 17px; font-weight: 700; cursor: pointer; font-family: 'DM Sans'; transition: .1s; }
 
     .toggle-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-    .toggle-lbl { font-size: 14px; color: var(--charcoal); font-weight: 500;}
-    .toggle { width: 46px; height: 26px; background: #D1CDA; border-radius: 13px; position: relative; cursor: pointer; border: 2px solid var(--border);}
+    .toggle-lbl { font-size: 16px; color: var(--charcoal); font-weight: 500;}
+    .toggle { width: 46px; height: 26px; background: #CBD5E1; border-radius: 13px; position: relative; cursor: pointer; border: 2px solid var(--border);}
     .toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; background: white; border-radius: 50%; transition: .3s; }
     .toggle.on { background: var(--sage); border-color: var(--sage); }
     .toggle.on::after { transform: translateX(20px); }
@@ -105,61 +111,61 @@
     .map-container { margin: 0 20px 15px; border-radius: 20px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.05); border: 2px solid var(--white);}
     .map-container iframe { width: 100%; height: 220px; border: none; display: block; }
     .info-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start;}
-    .info-row svg { width: 18px; height: 18px; color: var(--terra); flex-shrink: 0; margin-top: 2px;}
-    .info-row p { font-size: 14px; color: var(--charcoal); }
+    .info-row svg { width: 18px; height: 18px; color: var(--sage); flex-shrink: 0; margin-top: 2px;}
+    .info-row p { font-size: 16px; color: var(--charcoal); }
 
     .chat-wrap { display: flex; flex-direction: column; height: calc(100vh - 70px); }
     .chat-msgs { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
-    .mbub { padding: 13px 16px; border-radius: 18px; max-width: 82%; font-size: 14px; line-height: 1.5; }
+    .mbub { padding: 13px 16px; border-radius: 18px; max-width: 82%; font-size: 16px; line-height: 1.5; }
     .muser { align-self: flex-end; background: var(--terra); color: var(--white); border-bottom-right-radius: 4px; }
     .mbot { align-self: flex-start; background: var(--white); color: var(--charcoal); border-bottom-left-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,.04); }
     .chat-pet-card { align-self: flex-start; background: var(--white); border-radius: 16px; padding: 12px; display: flex; align-items: center; gap: 10px; max-width: 82%; border: 1px solid var(--border); }
     .chat-pet-emoji { width: 44px; height: 44px; background: var(--warm); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; overflow: hidden; }
-    .chat-inp-row { padding: 12px 16px; background: var(--white); display: flex; gap: 8px; align-items: center; border-top: 1px solid #F0EBE3; }
-    .chat-inp-row input { flex: 1; padding: 13px 16px; border-radius: 22px; border: 1.5px solid var(--border); outline: none; font-family: 'DM Sans'; font-size: 14px; color: var(--charcoal); background: var(--input-bg); }
-    .send-btn { width: 44px; height: 44px; background: var(--terra); border: none; border-radius: 50%; color: var(--white); font-size: 18px; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; }
+    .chat-inp-row { padding: 12px 16px; background: var(--white); display: flex; gap: 8px; align-items: center; border-top: 1px solid #E2E8F0; }
+    .chat-inp-row input { flex: 1; padding: 13px 16px; border-radius: 22px; border: 1.5px solid var(--border); outline: none; font-family: 'DM Sans'; font-size: 16px; color: var(--charcoal); background: var(--input-bg); }
+    .send-btn { width: 44px; height: 44px; background: var(--sage); border: none; border-radius: 50%; color: var(--white); font-size: 18px; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; }
 
     .sub-tabs { display: flex; gap: 8px; padding: 0 20px 14px; }
-    .stab { flex: 1; padding: 10px; border-radius: 14px; border: none; background: #E0D8CC; color: var(--muted); font-weight: 700; font-size: 13px; cursor: pointer; font-family: 'DM Sans'; }
-    .stab.on { background: var(--charcoal); color: var(--white); }
+    .stab { flex: 1; padding: 10px; border-radius: 14px; border: none; background: #CBD5E1; color: var(--charcoal); font-weight: 700; font-size: 15px; cursor: pointer; font-family: 'DM Sans'; }
+    .stab.on { background: var(--terra); color: var(--white); }
     .dsec { display: none; }
     .dsec.on { display: block; }
-    .badge { font-size: 11px; padding: 4px 10px; border-radius: 8px; font-weight: 700; flex-shrink: 0; }
-    .b-rev { background: #FFF3E0; color: #E65100; }
-    .b-cita { background: #E3F2FD; color: #1565C0; }
-    .empty { text-align: center; color: var(--muted); font-size: 14px; margin-top: 40px; padding: 0 20px; line-height: 1.6; }
+    .badge { font-size: 12px; padding: 4px 10px; border-radius: 8px; font-weight: 700; flex-shrink: 0; }
+    .b-rev { background: #E0F2FE; color: #0369A1; }
+    .b-cita { background: #DBEAFE; color: #1D4ED8; }
+    .empty { text-align: center; color: var(--muted); font-size: 16px; margin-top: 40px; padding: 0 20px; line-height: 1.6; }
 
     .tl-card { background: var(--white); border-radius: 20px; padding: 20px; margin: 0 20px; box-shadow: 0 2px 10px rgba(0,0,0,.04); }
     .tl-item { display: flex; gap: 14px; position: relative; padding-bottom: 22px; }
     .tl-item:last-child { padding-bottom: 0; }
-    .tl-line { position: absolute; left: 11px; top: 26px; bottom: 0; width: 2px; background: #EEE; }
+    .tl-line { position: absolute; left: 11px; top: 26px; bottom: 0; width: 2px; background: #E2E8F0; }
     .tl-item:last-child .tl-line { display: none; }
-    .tl-dot { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; background: var(--white); border: 2px solid #CCC; color: #CCC; }
+    .tl-dot { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; background: var(--white); border: 2px solid #CBD5E1; color: #CBD5E1; }
     .tl-dot.done { background: var(--sage); border-color: var(--sage); color: var(--white); }
     .tl-dot.cur { border-color: var(--terra); border-width: 4px; background: var(--white); }
-    .tl-content h4 { font-size: 14px; font-weight: 700; color: var(--charcoal); margin-bottom: 3px; }
-    .tl-content p { font-size: 13px; color: var(--muted); }
-    .action-btn { display: inline-block; margin-top: 10px; background: var(--warm); color: var(--terra); border: none; padding: 8px 16px; border-radius: 12px; font-weight: 700; font-size: 13px; cursor: pointer; font-family: 'DM Sans'; }
+    .tl-content h4 { font-size: 17px; font-weight: 700; color: var(--charcoal); margin-bottom: 3px; }
+    .tl-content p { font-size: 15px; color: var(--muted); }
+    .action-btn { display: inline-block; margin-top: 10px; background: var(--warm); color: var(--terra); border: none; padding: 8px 16px; border-radius: 12px; font-weight: 700; font-size: 15px; cursor: pointer; font-family: 'DM Sans'; }
 
     .cal-card { background: var(--white); border-radius: 20px; padding: 18px; margin: 0 20px 16px; box-shadow: 0 2px 10px rgba(0,0,0,.04); }
     .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
     .cal-header button { background: none; border: none; font-size: 20px; color: var(--terra); cursor: pointer; padding: 0 10px; font-weight: bold; }
     .month-title { text-align: center; font-weight: 700; font-size: 18px; color: var(--terra); }
     .days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; }
-    .dh { font-size: 12px; color: var(--muted); font-weight: 700; padding-bottom: 8px; }
-    .dc { padding: 10px 0; border-radius: 10px; font-size: 13px; cursor: default; }
-    .dc.dis { color: #CCC; }
+    .dh { font-size: 13px; color: var(--muted); font-weight: 700; padding-bottom: 8px; }
+    .dc { padding: 10px 0; border-radius: 10px; font-size: 15px; cursor: default; }
+    .dc.dis { color: #CBD5E1; }
     .dc.avail { cursor: pointer; color: var(--charcoal); }
-    .dc.avail:hover { background: #F0EBE3; }
-    .dc.sel { background: var(--terra); color: var(--white); font-weight: 700; }
+    .dc.avail:hover { background: #E2E8F0; }
+    .dc.sel { background: var(--sage); color: var(--white); font-weight: 700; }
     .chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 20px 16px; }
-    .chip { border: 1.5px solid var(--border); background: var(--white); padding: 10px 16px; border-radius: 14px; font-size: 13px; cursor: pointer; color: var(--charcoal); font-family: 'DM Sans'; font-weight: 500; transition: .15s; }
-    .chip.on { background: var(--charcoal); color: var(--white); border-color: var(--charcoal); }
+    .chip { border: 1.5px solid var(--border); background: var(--white); padding: 10px 16px; border-radius: 14px; font-size: 16px; cursor: pointer; color: var(--charcoal); font-family: 'DM Sans'; font-weight: 500; transition: .15s; }
+    .chip.on { background: var(--terra); color: var(--white); border-color: var(--terra); }
 
     .admin-stats { display: flex; gap: 15px; padding: 0 20px 20px; }
     .astat { flex: 1; background: var(--white); border-radius: 20px; padding: 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,.03); border: 2px solid var(--border);}
     .astat h2 { font-size: 32px; color: var(--terra); margin-bottom: 5px; }
-    .astat p { font-size: 12px; font-weight: 700; color: var(--charcoal); }
+    .astat p { font-size: 14px; font-weight: 700; color: var(--charcoal); }
   </style>
 </head>
 <body>
@@ -223,7 +229,7 @@
         </button>
       </div>
       <div class="search-bar">
-        <span style="font-size:16px">🔍</span>
+        <span style="font-size:18px">🔍</span>
         <input type="text" id="search-in" placeholder="Buscar por nombre o raza..." oninput="filtrar()">
       </div>
       <div class="filters">
@@ -241,7 +247,7 @@
 
     <div id="tab-chat" class="tab-pane">
       <div class="chat-wrap">
-        <div class="header" style="padding-bottom:0"><h1 style="font-size:22px">Asistente Patitas 🐾</h1></div>
+        <div class="header" style="padding-bottom:0"><h1 style="font-size:24px">Asistente Patitas 🐾</h1></div>
         <div class="chat-msgs" id="chat-msgs">
           <div class="mbub mbot" id="chat-welcome">¡Hola! Soy tu guía. ¿Buscas un perrito o un gatito?</div>
         </div>
@@ -283,14 +289,14 @@
     <div class="list-emoji" id="prof-avatar" style="background:var(--white);">👤</div>
     <div class="list-info">
       <h3 id="prof-name">Usuario</h3>
-      <p id="prof-alias" style="color:var(--terra); font-weight: 500;">@alias</p>
-      <button onclick="abrirEditarPerfil()" style="margin-top:8px; background:var(--warm); border:none; color:var(--terra); padding:6px 12px; border-radius:8px; font-weight:700; font-size:12px; cursor:pointer; font-family:'DM Sans';">Editar Perfil</button>
+      <p id="prof-alias" style="color:var(--sage); font-weight: 500;">@alias</p>
+      <button onclick="abrirEditarPerfil()" style="margin-top:8px; background:var(--warm); border:none; color:var(--terra); padding:8px 14px; border-radius:8px; font-weight:700; font-size:14px; cursor:pointer; font-family:'DM Sans';">Editar Perfil</button>
     </div>
   </div>
-  <h3 style="padding:0 20px 10px; font-size:15px; color:var(--muted);">AJUSTES Y OPCIONES</h3>
-  <div class="list-item" onclick="abrirVista('s-settings')"><div class="list-emoji" style="font-size:20px; width:44px; height:44px; background:#F0E8D8;">🔔</div><div class="list-info"><h3>Notificaciones</h3><p>Gestionar alertas</p></div><span style="color:var(--muted); font-size:20px;">→</span></div>
-  <div class="list-item" onclick="abrirVista('s-location')"><div class="list-emoji" style="font-size:20px; width:44px; height:44px; background:#E3F2FD;">📍</div><div class="list-info"><h3>Ubicación del Refugio</h3><p>Cómo llegar, horarios</p></div><span style="color:var(--muted); font-size:20px;">→</span></div>
-  <div class="list-item" onclick="abrirVista('s-admin-login')"><div class="list-emoji" style="font-size:20px; width:44px; height:44px; background:#E0F2F1;">🔒</div><div class="list-info"><h3>Panel Administrador</h3><p>Solo personal autorizado</p></div><span style="color:var(--muted); font-size:20px;">→</span></div>
+  <h3 style="padding:0 20px 10px; font-size:16px; color:var(--muted);">AJUSTES Y OPCIONES</h3>
+  <div class="list-item" onclick="abrirVista('s-settings')"><div class="list-emoji" style="font-size:20px; width:44px; height:44px; background:#E2E8F0;">🔔</div><div class="list-info"><h3>Notificaciones</h3><p>Gestionar alertas</p></div><span style="color:var(--muted); font-size:20px;">→</span></div>
+  <div class="list-item" onclick="abrirVista('s-location')"><div class="list-emoji" style="font-size:20px; width:44px; height:44px; background:#E0F2FE;">📍</div><div class="list-info"><h3>Ubicación del Refugio</h3><p>Cómo llegar, horarios</p></div><span style="color:var(--muted); font-size:20px;">→</span></div>
+  <div class="list-item" onclick="abrirVista('s-admin-login')"><div class="list-emoji" style="font-size:20px; width:44px; height:44px; background:#E0F8FF;">🔒</div><div class="list-info"><h3>Panel Administrador</h3><p>Solo personal autorizado</p></div><span style="color:var(--muted); font-size:20px;">→</span></div>
   <div class="list-item" onclick="cerrarSesion()" style="margin-top:30px;">
     <div class="list-emoji" style="font-size:20px; width:44px; height:44px; background:#FFE0E0;">🚪</div>
     <div class="list-info"><h3 style="color:#D32F2F;">Cerrar Sesión</h3><p>Salir de tu cuenta actual</p></div>
@@ -304,17 +310,17 @@
     <div style="width:100px; height:100px; border: 3px solid var(--white); box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; overflow:hidden; background:var(--input-bg); position:relative;" onclick="document.getElementById('edit-photo').click()">
       <span id="edit-photo-text" style="font-size:35px; position:absolute;">👤</span>
       <img id="edit-photo-preview" style="display:none; width:100%; height:100%; object-fit:cover; position:relative; z-index:2;">
-      <div style="position:absolute; bottom:0; width:100%; background:rgba(0,0,0,0.5); color:white; font-size:10px; text-align:center; padding:4px 0; z-index:3;">EDITAR</div>
+      <div style="position:absolute; bottom:0; width:100%; background:rgba(0,0,0,0.5); color:white; font-size:12px; text-align:center; padding:4px 0; z-index:3;">EDITAR</div>
     </div>
     <input type="file" id="edit-photo" accept="image/*" style="display:none;" onchange="previewUserPhoto(event)">
   </div>
   <div class="fgroup">
     <h3>Tus Datos</h3>
-    <span style="font-size:12px; color:var(--muted); margin-bottom:4px; display:block; font-weight:bold;">Nombre (No editable)</span>
-    <input type="text" id="ep-nombre" class="finput" readonly style="background:#EAE5DF; color:#888; cursor:not-allowed;">
-    <span style="font-size:12px; color:var(--muted); margin-bottom:4px; display:block; font-weight:bold;">Apellido (No editable)</span>
-    <input type="text" id="ep-apellido" class="finput" readonly style="background:#EAE5DF; color:#888; cursor:not-allowed;">
-    <span style="font-size:12px; color:var(--terra); margin-bottom:4px; display:block; font-weight:bold;">Usuario / Alias (Editable)</span>
+    <span style="font-size:14px; color:var(--muted); margin-bottom:4px; display:block; font-weight:bold;">Nombre (No editable)</span>
+    <input type="text" id="ep-nombre" class="finput" readonly style="background:#E2E8F0; color:#64748B; cursor:not-allowed;">
+    <span style="font-size:14px; color:var(--muted); margin-bottom:4px; display:block; font-weight:bold;">Apellido (No editable)</span>
+    <input type="text" id="ep-apellido" class="finput" readonly style="background:#E2E8F0; color:#64748B; cursor:not-allowed;">
+    <span style="font-size:14px; color:var(--sage); margin-bottom:4px; display:block; font-weight:bold;">Usuario / Alias (Editable)</span>
     <input type="text" id="ep-alias" class="finput" placeholder="Ej: Alex_1603">
   </div>
   <div style="padding:0 20px 40px;"><button class="primary-btn" id="btn-save-profile" onclick="guardarPerfil()">Guardar Cambios</button></div>
@@ -350,12 +356,12 @@
   </div>
 </div>
 
-<div id="s-admin" class="fs-overlay" style="background:#F4F6F8;">
+<div id="s-admin" class="fs-overlay" style="background:#F4F7FA;">
   <button class="back-btn" onclick="cerrarVista('s-admin')">←</button>
   <h1 class="fs-title" style="margin-top:20px; margin-bottom: 10px;">Panel de Control</h1>
   <div class="admin-stats"><div class="astat"><h2 id="adm-pet-count">0</h2><p>Mascotas</p></div><div class="astat"><h2 id="adm-req-count">0</h2><p>Solicitudes</p></div></div>
   <div style="padding:0 20px;"><button class="primary-btn" style="background:var(--terra);" onclick="abrirVista('s-add-pet')">+ Añadir Nueva Mascota</button></div>
-  <h3 style="padding:30px 20px 10px; font-size:15px; color:var(--muted);">ÚLTIMAS SOLICITUDES</h3>
+  <h3 style="padding:30px 20px 10px; font-size:16px; color:var(--muted);">ÚLTIMAS SOLICITUDES</h3>
   <div id="adm-req-list"></div>
 </div>
 
@@ -364,16 +370,16 @@
   <h1 class="fs-title">Detalles del Adoptante</h1>
   <div class="fgroup">
     <h3>Datos Personales</h3>
-    <p style="font-size:14px; margin-bottom:8px; color:var(--charcoal);"><strong>Nombre:</strong> <span id="ari-nom"></span></p>
-    <p style="font-size:14px; margin-bottom:8px; color:var(--charcoal);"><strong>Teléfono:</strong> <span id="ari-tel"></span></p>
-    <p style="font-size:14px; margin-bottom:8px; color:var(--charcoal);"><strong>Correo:</strong> <span id="ari-email"></span></p>
+    <p style="font-size:16px; margin-bottom:8px; color:var(--charcoal);"><strong>Nombre:</strong> <span id="ari-nom"></span></p>
+    <p style="font-size:16px; margin-bottom:8px; color:var(--charcoal);"><strong>Teléfono:</strong> <span id="ari-tel"></span></p>
+    <p style="font-size:16px; margin-bottom:8px; color:var(--charcoal);"><strong>Correo:</strong> <span id="ari-email"></span></p>
   </div>
   <div class="fgroup">
     <h3>Hogar y Postulación</h3>
-    <p style="font-size:14px; margin-bottom:8px; color:var(--charcoal);"><strong>Vivienda:</strong> <span id="ari-viv"></span></p>
-    <p style="font-size:14px; margin-bottom:8px; color:var(--charcoal);"><strong>Mascotas:</strong> <span id="ari-masc"></span></p>
-    <p style="font-size:14px; margin-bottom:8px; color:var(--charcoal);"><strong>Mascota:</strong> <span id="ari-pet"></span></p>
-    <p style="font-size:14px; margin-bottom:8px; color:var(--terra);"><strong>Estado:</strong> <span id="ari-estado"></span></p>
+    <p style="font-size:16px; margin-bottom:8px; color:var(--charcoal);"><strong>Vivienda:</strong> <span id="ari-viv"></span></p>
+    <p style="font-size:16px; margin-bottom:8px; color:var(--charcoal);"><strong>Mascotas:</strong> <span id="ari-masc"></span></p>
+    <p style="font-size:16px; margin-bottom:8px; color:var(--charcoal);"><strong>Mascota:</strong> <span id="ari-pet"></span></p>
+    <p style="font-size:16px; margin-bottom:8px; color:var(--sage);"><strong>Estado:</strong> <span id="ari-estado"></span></p>
   </div>
 </div>
 
@@ -403,21 +409,21 @@
   <div class="det-hero" id="det-hero"></div>
   <div class="det-content">
     <h1 id="det-name" style="font-family:'Fraunces',serif;font-size:30px;margin-bottom:4px"></h1>
-    <p id="det-breed" style="color:var(--muted);font-size:15px;margin-bottom:4px"></p>
+    <p id="det-breed" style="color:var(--muted);font-size:16px;margin-bottom:4px"></p>
     <div class="stats"><div class="stat-box"><span>Edad</span><strong id="det-age"></strong></div><div class="stat-box"><span>Peso</span><strong id="det-weight"></strong></div><div class="stat-box"><span>Sexo</span><strong id="det-gender"></strong></div></div>
-    <h2 style="font-family:'Fraunces',serif;font-size:20px;margin-bottom:8px">Sobre mí</h2>
-    <p id="det-about" style="color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:24px"></p>
+    <h2 style="font-family:'Fraunces',serif;font-size:22px;margin-bottom:8px">Sobre mí</h2>
+    <p id="det-about" style="color:var(--muted);font-size:16px;line-height:1.6;margin-bottom:24px"></p>
     <button class="primary-btn" onclick="abrirForm()">Adoptar Ahora</button>
   </div>
 </div>
 
 <div id="s-form" class="fs-overlay">
   <button class="back-btn" onclick="cerrarVista('s-form')">←</button>
-  <div class="form-top" style="padding:58px 20px 10px;"><h1 style="font-family:'Fraunces',serif;font-size:26px;">Solicitud</h1><p style="color:var(--muted);font-size:13px;margin-top:6px">Para <strong id="form-pet" style="color:var(--terra)"></strong></p></div>
+  <div class="form-top" style="padding:58px 20px 10px;"><h1 style="font-family:'Fraunces',serif;font-size:26px;">Solicitud</h1><p style="color:var(--muted);font-size:16px;margin-top:6px">Para <strong id="form-pet" style="color:var(--sage)"></strong></p></div>
   <div class="fgroup">
     <h3>1. Tus Datos</h3>
-    <span style="font-size:12px; color:var(--muted); margin-bottom:4px; display:block;">Nombre del Adoptante (Bloqueado por seguridad)</span>
-    <input type="text" id="f-nom" class="finput" placeholder="Nombre completo" readonly style="background:#EAE5DF; color:#888; cursor:not-allowed;">
+    <span style="font-size:14px; color:var(--muted); margin-bottom:4px; display:block;">Nombre del Adoptante (Bloqueado por seguridad)</span>
+    <input type="text" id="f-nom" class="finput" placeholder="Nombre completo" readonly style="background:#E2E8F0; color:#64748B; cursor:not-allowed;">
     <input type="tel" id="f-tel" class="finput" placeholder="Teléfono celular">
     <input type="email" id="f-email" class="finput" placeholder="Correo electrónico">
   </div>
@@ -428,7 +434,7 @@
 <div id="s-timeline" class="fs-overlay">
   <button class="back-btn" onclick="cerrarVista('s-timeline')">←</button>
   <h1 class="fs-title" style="padding-bottom:5px;">Proceso de Adopción</h1>
-  <p style="text-align:center; color:var(--muted); font-size:14px; margin-bottom:20px;">Mascota: <strong id="tl-pet" style="color:var(--terra)"></strong></p>
+  <p style="text-align:center; color:var(--muted); font-size:16px; margin-bottom:20px;">Mascota: <strong id="tl-pet" style="color:var(--sage)"></strong></p>
   <div class="tl-card" id="tl-steps"></div>
 </div>
 
@@ -437,14 +443,14 @@
   <h1 class="fs-title">Información de Solicitud</h1>
   <div class="fgroup">
     <h3>Datos de Contacto</h3>
-    <p style="font-size:14px; margin-bottom:8px; color:var(--charcoal);"><strong>Nombre:</strong> <span id="ri-nom"></span></p>
-    <p style="font-size:14px; margin-bottom:8px; color:var(--charcoal);"><strong>Teléfono:</strong> <span id="ri-tel"></span></p>
-    <p style="font-size:14px; margin-bottom:8px; color:var(--charcoal);"><strong>Correo:</strong> <span id="ri-email"></span></p>
+    <p style="font-size:16px; margin-bottom:8px; color:var(--charcoal);"><strong>Nombre:</strong> <span id="ri-nom"></span></p>
+    <p style="font-size:16px; margin-bottom:8px; color:var(--charcoal);"><strong>Teléfono:</strong> <span id="ri-tel"></span></p>
+    <p style="font-size:16px; margin-bottom:8px; color:var(--charcoal);"><strong>Correo:</strong> <span id="ri-email"></span></p>
   </div>
   <div class="fgroup">
     <h3>Detalles del Hogar</h3>
-    <p style="font-size:14px; margin-bottom:8px; color:var(--charcoal);"><strong>Vivienda:</strong> <span id="ri-viv"></span></p>
-    <p style="font-size:14px; margin-bottom:8px; color:var(--charcoal);"><strong>Otras Mascotas:</strong> <span id="ri-masc"></span></p>
+    <p style="font-size:16px; margin-bottom:8px; color:var(--charcoal);"><strong>Vivienda:</strong> <span id="ri-viv"></span></p>
+    <p style="font-size:16px; margin-bottom:8px; color:var(--charcoal);"><strong>Otras Mascotas:</strong> <span id="ri-masc"></span></p>
   </div>
   <div style="padding: 20px;">
     <button class="primary-btn" style="background:#D32F2F;" onclick="cancelarSolicitud()">Cancelar Solicitud</button>
@@ -462,7 +468,7 @@
     </div>
     <div class="days-grid" id="cal-grid"></div>
   </div>
-  <h3 style="padding:0 20px 10px;font-size:15px;color:var(--charcoal)">Horarios Disponibles</h3>
+  <h3 style="padding:0 20px 10px;font-size:16px;color:var(--charcoal)">Horarios Disponibles</h3>
   <div class="chips">
     <div class="chip" onclick="selHora(this,'09:00 AM')">09:00 AM</div><div class="chip" onclick="selHora(this,'10:00 AM')">10:00 AM</div>
     <div class="chip" onclick="selHora(this,'11:00 AM')">11:00 AM</div><div class="chip" onclick="selHora(this,'12:00 PM')">12:00 PM</div>
@@ -848,14 +854,14 @@
     if (!savedIds.size) { l.innerHTML = '<p class="empty">Aún no tienes favoritos.</p>'; return; }
     savedIds.forEach(id => {
       const p = allPets.find(x => x.id === id);
-      if (p) l.innerHTML += `<div class="list-item" onclick="abrirDetalle(${p.id})"><div class="list-emoji">${getMedia(p)}</div><div class="list-info"><h3>${p.name}</h3><p>${p.breed}</p></div><span style="color:var(--terra);font-size:18px">♥</span></div>`;
+      if (p) l.innerHTML += `<div class="list-item" onclick="abrirDetalle(${p.id})"><div class="list-emoji">${getMedia(p)}</div><div class="list-info"><h3>${p.name}</h3><p>${p.breed}</p></div><span style="color:var(--sage);font-size:20px">♥</span></div>`;
     });
   }
 
   function renderPostular() {
     const l = document.getElementById('lista-postular'); l.innerHTML = '';
     allPets.forEach(p => {
-      l.innerHTML += `<div class="list-item" onclick="abrirDetalle(${p.id})"><div class="list-emoji">${getMedia(p)}</div><div class="list-info"><h3>Postular a ${p.name}</h3><p>${p.breed}</p></div><span style="color:var(--terra);font-size:20px">→</span></div>`;
+      l.innerHTML += `<div class="list-item" onclick="abrirDetalle(${p.id})"><div class="list-emoji">${getMedia(p)}</div><div class="list-info"><h3>Postular a ${p.name}</h3><p>${p.breed}</p></div><span style="color:var(--sage);font-size:20px">→</span></div>`;
     });
   }
 
@@ -984,12 +990,12 @@
     solIdx = idx; const s = solis[idx];
     document.getElementById('tl-pet').innerHTML = `${s.pet.name} ${s.pet.emoji && !s.pet.emoji.startsWith('data') ? s.pet.emoji : ''}`;
     const con = document.getElementById('tl-steps');
-    let btnVerDatos = `<button class="action-btn" style="background:#E3F2FD; color:#1565C0; margin-bottom:20px; width:100%; text-align:center;" onclick="abrirReqInfo(${idx})">📋 Ver Detalles y Opciones</button>`;
+    let btnVerDatos = `<button class="action-btn" style="background:#E0F2FE; color:#0369A1; margin-bottom:20px; width:100%; text-align:center;" onclick="abrirReqInfo(${idx})">📋 Ver Detalles y Opciones</button>`;
     let h = btnVerDatos + `<div class="tl-item"><div class="tl-line"></div><div class="tl-dot done">✓</div><div class="tl-content"><h4>1. Solicitud enviada</h4><p>Recibimos tus datos.</p></div></div>`;
     if (s.step === 1) {
       h += `<div class="tl-item"><div class="tl-line"></div><div class="tl-dot cur"></div><div class="tl-content"><h4>2. Revisión del perfil</h4><p>El refugio está evaluando tu perfil.</p><button class="action-btn" onclick="abrirAppt()">📅 Agendar Cita</button></div></div><div class="tl-item"><div class="tl-line"></div><div class="tl-dot">3</div><div class="tl-content"><h4>3. Cita presencial</h4></div></div><div class="tl-item"><div class="tl-line"></div><div class="tl-dot">4</div><div class="tl-content"><h4>4. Firma de contrato</h4></div></div><div class="tl-item"><div class="tl-dot">5</div><div class="tl-content"><h4>5. ¡En casa!</h4></div></div>`;
     } else {
-      h += `<div class="tl-item"><div class="tl-line"></div><div class="tl-dot done">✓</div><div class="tl-content"><h4>2. Perfil Aprobado</h4></div></div><div class="tl-item"><div class="tl-line"></div><div class="tl-dot cur"></div><div class="tl-content"><h4>3. Cita presencial</h4><p style="color:var(--terra);font-weight:700">${s.citaDia} · ${s.citaHora}</p></div></div><div class="tl-item"><div class="tl-line"></div><div class="tl-dot">4</div><div class="tl-content"><h4>4. Firma de contrato</h4></div></div><div class="tl-item"><div class="tl-dot">5</div><div class="tl-content"><h4>5. ¡En casa!</h4></div></div>`;
+      h += `<div class="tl-item"><div class="tl-line"></div><div class="tl-dot done">✓</div><div class="tl-content"><h4>2. Perfil Aprobado</h4></div></div><div class="tl-item"><div class="tl-line"></div><div class="tl-dot cur"></div><div class="tl-content"><h4>3. Cita presencial</h4><p style="color:var(--sage);font-weight:700">${s.citaDia} · ${s.citaHora}</p></div></div><div class="tl-item"><div class="tl-line"></div><div class="tl-dot">4</div><div class="tl-content"><h4>4. Firma de contrato</h4></div></div><div class="tl-item"><div class="tl-dot">5</div><div class="tl-content"><h4>5. ¡En casa!</h4></div></div>`;
     }
     con.innerHTML = h; abrirVista('s-timeline');
   }
@@ -1064,7 +1070,7 @@
       if (txt) box.innerHTML += `<div class="mbub mbot">${txt}</div>`;
       if (petId) {
         const p = allPets.find(x => x.id === petId);
-        if (p) box.innerHTML += `<div class="chat-pet-card"><div class="chat-pet-emoji">${getMedia(p)}</div><div style="flex:1"><strong style="font-size:14px">${p.name}</strong><br><span style="font-size:12px;color:var(--muted)">${p.breed}</span></div><button onclick="abrirDetalle(${p.id})" style="background:var(--terra);color:white;border:none;padding:8px 12px;border-radius:10px;font-weight:700;font-size:12px;cursor:pointer">Ver</button></div>`;
+        if (p) box.innerHTML += `<div class="chat-pet-card"><div class="chat-pet-emoji">${getMedia(p)}</div><div style="flex:1"><strong style="font-size:16px">${p.name}</strong><br><span style="font-size:14px;color:var(--muted)">${p.breed}</span></div><button onclick="abrirDetalle(${p.id})" style="background:var(--terra);color:white;border:none;padding:8px 12px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer">Ver</button></div>`;
       }
       box.scrollTop = box.scrollHeight;
       chatHist.push({ role: 'user', content: msg }, { role: 'assistant', content: txt });
