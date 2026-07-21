@@ -16,6 +16,7 @@
       --white: #FFFFFF;      /* Blanco puro */
       --border: #CBD5E1;     /* Borde plateado */
       --input-bg: #F8FAFC;   /* Fondo de inputs */
+      --heart: #FF3B30;      /* Rojo vibrante exclusivo para los corazones */
     }
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     body { font-family: 'DM Sans', sans-serif; font-size: 16px; background: var(--cream); min-height: 100vh; max-width: 480px; margin: 0 auto; }
@@ -74,7 +75,7 @@
     .pet-card h3 { font-size: 17px; color: var(--charcoal); font-weight: 700; }
     .pet-card p { font-size: 14px; color: var(--muted); margin-top: 2px; }
     .heart-btn { position: absolute; top: 12px; right: 12px; background: var(--white); border: none; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.08); font-size: 17px; color: #CBD5E1; }
-    .heart-btn.on { color: var(--sage); }
+    .heart-btn.on { color: var(--heart); } /* Corazón activo en rojo */
 
     .list-item { display: flex; align-items: center; gap: 12px; background: var(--white); border-radius: 18px; padding: 14px; margin: 0 20px 12px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.03); }
     .list-emoji { width: 52px; height: 52px; background: var(--warm); border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; overflow: hidden; }
@@ -854,7 +855,7 @@
     if (!savedIds.size) { l.innerHTML = '<p class="empty">Aún no tienes favoritos.</p>'; return; }
     savedIds.forEach(id => {
       const p = allPets.find(x => x.id === id);
-      if (p) l.innerHTML += `<div class="list-item" onclick="abrirDetalle(${p.id})"><div class="list-emoji">${getMedia(p)}</div><div class="list-info"><h3>${p.name}</h3><p>${p.breed}</p></div><span style="color:var(--sage);font-size:20px">♥</span></div>`;
+      if (p) l.innerHTML += `<div class="list-item" onclick="abrirDetalle(${p.id})"><div class="list-emoji">${getMedia(p)}</div><div class="list-info"><h3>${p.name}</h3><p>${p.breed}</p></div><span style="color:var(--heart);font-size:20px">♥</span></div>`;
     });
   }
 
